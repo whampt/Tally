@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- Add the xmlns:fresh line and use it to resolve the fresh:FreshBaseContentPage declaration -->
+<fresh:FreshBaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                            x:Class="Tally.Pages.ItemListPage"
+                            xmlns:fresh="clr-namespace:FreshMvvm;assembly=Item">
+    <fresh:FreshBaseContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+    </fresh:FreshBaseContentPage.ToolbarItems>
+    <StackLayout>
+    <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <ListView.ItemTemplate >
+            <DataTemplate>
+                <ViewCell>
+                    <Grid>
+                        <Label Text="{Binding Name}" />
+                        <Label Grid.Column="1" Text="{Binding Cost}" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" >
+            <Label x:Name="subTotalLabel1" 
+                           Text="SubTotal"        
+                           Grid.Row="0" Grid.Column="0"/>
+            <Label x:Name="subTotalLabel2" 
+                           Text="{Binding ItemSubTotal}"        
+                           Grid.Row="0" Grid.Column="1"/>
+            <Label x:Name="TotalLabel1" 
+                           Text="Total"        
+                           Grid.Row="1" Grid.Column="0"/>
+            <Label x:Name="TotalLabel2" 
+                           Text="{Binding ItemTotal}"        
+                           Grid.Row="1" Grid.Column="1"/>
+            <Button x:Name="ClearListButton" Text="Clear List"  Command="{Binding DeleteAllCommand}" Grid.Row="2" Grid.ColumnSpan="2"></Button>
+        </Grid>
+
+    </StackLayout>
+</fresh:FreshBaseContentPage>
