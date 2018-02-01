@@ -148,6 +148,8 @@ namespace Tally.PageModels
                     if (await CoreMethods.DisplayAlert("Delete List", "Are you Sure?", "Yes", "No"))
                     {
                         await _repository.DeleteAll();
+                        //Items.Clear();
+                        //Items.TrimExcess;
                         LoadItems();
 //                        ItemTotal = "0";
 //                        ItemSubTotal = "0";
