@@ -15,6 +15,8 @@ namespace Tally.Models
         public string Name { get; set; }
         [MaxLength(250)]
         public string Cost { get; set; }
+        [NotNull,MaxLength(30)]
+        public DateTime TimeStamp { get; private set; } 
 
         public bool IsValid()
         {
@@ -43,7 +45,15 @@ namespace Tally.Models
         public Item(string name, string cost)
         {
             Name = name;
-            Cost = cost;
+            if (!string.IsNullOrEmpty(cost))
+            {
+                Cost = cost;
+            }
+            else
+            {
+                Cost = "0";
+            }
+            TimeStamp = DateTime.UtcNow;
         }
         public Item() { }
     }
